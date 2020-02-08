@@ -13,19 +13,3 @@ services:
         environment:
             - APP_ENV=dev
         entrypoint: ./docker/php/server-entrypoint.sh
-
-    postgres:
-        image: postgres:alpine
-        ports:
-            - 5432:5432
-        environment:
-            - POSTGRES_DB=gildasquemener
-            - POSTGRES_PASSWORD=gildasquemener
-        volumes:
-            - ./docker/pgsql:/docker-entrypoint-initdb.d
-            - ./db:/var/lib/postgresql/data
-
-    adminer:
-        image: adminer
-        ports:
-            - 8082:8080

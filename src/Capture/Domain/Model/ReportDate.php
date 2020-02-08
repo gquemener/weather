@@ -33,11 +33,6 @@ final class ReportDate
         return new self($datetime);
     }
 
-    public function year(): string
-    {
-        return $this->datetime->format('Y');
-    }
-
     public function toString(): string
     {
         return $this->datetime->format(self::FORMAT);

@@ -1,0 +1,4 @@
+add_report:
+    path: /reports
+    methods: POST
+    controller: App\Controller\CaptureController::report

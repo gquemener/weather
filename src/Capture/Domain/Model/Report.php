@@ -42,7 +42,7 @@ final class Report
                 'latitude' => $this->location->latitude(),
                 'longitude' => $this->location->longitude(),
             ],
-            'date' => $this->measuredOn->toString(),
+            'date' => $this->measuredOn->toTimestamp(),
             'pressure' => $this->pressure->value(),
         ];
     }

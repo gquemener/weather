@@ -37,4 +37,9 @@ final class ReportDate
     {
         return $this->datetime->format(self::FORMAT);
     }
+
+    public function toTimestamp(): int
+    {
+        return $this->datetime->getTimestamp();
+    }
 }

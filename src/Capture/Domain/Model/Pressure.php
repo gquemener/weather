@@ -5,19 +5,19 @@ namespace App\Capture\Domain\Model;
 
 final class Pressure
 {
-    private int $value;
+    private float $value;
 
-    private function __construct(int $value)
+    private function __construct(float $value)
     {
         $this->value = $value;
     }
 
-    public static function fromInteger(int $value): self
+    public static function fromFloat(float $value): self
     {
         return new self($value);
     }
 
-    public function value(): int
+    public function value(): float
     {
         return $this->value;
     }

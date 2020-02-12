@@ -32,7 +32,7 @@ final class CaptureController
             $data['location']['latitude'],
             $data['location']['longitude']
         );
-        $command->pressure = Pressure::fromInteger($data['pressure']);
+        $command->pressure = Pressure::fromFloat($data['pressure']);
         $command->measuredOn = ReportDate::fromString($data['date']);
 
         $this->commandBus->dispatch($command);

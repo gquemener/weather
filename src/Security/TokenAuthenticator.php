@@ -34,7 +34,7 @@ final class TokenAuthenticator extends AbstractGuardAuthenticator
     public function getCredentials(Request $request)
     {
         $auth = $request->headers->get('Authorization');
-        list($_, $token) = array_map('trim', explode(':', $auth));
+        list($_, $token) = array_map('trim', explode(' ', $auth));
 
         return ['token' => $token];
     }

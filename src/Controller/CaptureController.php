@@ -6,7 +6,6 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Capture\Domain\Command\AddWeatherReport;
-use App\Capture\Domain\Model\Location;
 use App\Capture\Domain\Model\Pressure;
 use App\Capture\Domain\Model\ReportDate;
 use App\ServiceBus\CommandBus;
@@ -28,10 +27,6 @@ final class CaptureController
         }
 
         $command = new AddWeatherReport();
-        $command->location = Location::fromGpsCoordinates(
-            $data['location']['latitude'],
-            $data['location']['longitude']
-        );
         $command->pressure = Pressure::fromFloat($data['pressure']);
         $command->measuredOn = ReportDate::fromString($data['date']);
 

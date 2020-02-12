@@ -18,7 +18,6 @@ final class AddWeatherReportHandler
     public function __invoke(AddWeatherReport $command): void
     {
         $report = Report::capture(
-            $command->location,
             $command->measuredOn,
             $command->pressure
         );

@@ -1,4 +1,9 @@
+list_reports:
+    path: /reports
+    methods: GET
+    controller: App\Controller\ReportController::list
+
 add_report:
     path: /reports
     methods: POST
-    controller: App\Controller\CaptureController::report
+    controller: App\Controller\ReportController::add

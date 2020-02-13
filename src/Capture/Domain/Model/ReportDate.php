@@ -33,6 +33,13 @@ final class ReportDate
         return new self($datetime);
     }
 
+    public static function fromTimestamp(int $timestamp): self
+    {
+        $datetime = new \DateTimeImmutable();
+
+        return new self($datetime->setTimestamp($timestamp));
+    }
+
     public function toString(): string
     {
         return $this->datetime->format(self::FORMAT);

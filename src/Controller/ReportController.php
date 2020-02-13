@@ -5,21 +5,17 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Capture\Domain\Command\AddWeatherReport;
 use App\Capture\Domain\Model\Pressure;
 use App\Capture\Domain\Model\ReportDate;
 use App\ServiceBus\CommandBus;
+use App\ServiceBus\QueryBus;
+use App\Capture\Domain\Query\Last24Hours;
 
-final class CaptureController
+final class ReportController
 {
-    private CommandBus $commandBus;
-
-    public function __construct(CommandBus $commandBus)
-    {
-        $this->commandBus = $commandBus;
-    }
-
-    public function report(Request $request): Response
+    public function add(Request $request, CommandBus $commandBus): Response
     {
         $data = json_decode($request->getContent(), true);
         if (JSON_ERROR_NONE !== json_last_error()) {
@@ -30,8 +26,15 @@ final class CaptureController
         $command->pressure = Pressure::fromFloat($data['pressure']);
         $command->measuredOn = ReportDate::fromString($data['date']);
 
-        $this->commandBus->dispatch($command);
+        $commandBus->dispatch($command);
 
         return new Response('', 201);
+    }
+
+    public function list(QueryBus $queryBus): Response
+    {
+        $reports = $queryBus->dispatch(new Last24Hours());
+
+        return new JsonResponse($reports);
     }
 }

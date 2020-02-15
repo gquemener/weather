@@ -35,8 +35,9 @@ final class Last24HoursFinder
             )
         );
 
+        $data = array_reverse($reports);
         $history = [];
-        foreach ($reports as $value) {
+        foreach ($data as $value) {
             $history[$value['date']->hours()] = [
                 'date' => $value['date']->toString(),
                 'pressure' => $value['pressure'],

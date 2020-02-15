@@ -18,20 +18,32 @@ final class Last24HoursFinder
 
     public function __invoke(): array
     {
-        return array_map(
+        $reports = array_map(
             function(DocumentSnapshot $snapshot) {
                 $data = $snapshot->data();
-                $data['date'] = (ReportDate::fromTimestamp($data['date']))->toString();
+                $data['date'] = (ReportDate::fromTimestamp($data['date']));
 
                 return $data;
             },
             iterator_to_array(
                 $this->firestore
                      ->collection('reports')
-                     ->orderBy('date', 'ASC')
+                     ->where('date', '>=', time() - 7 * 24 * 60 * 60)
+                     ->orderBy('date', 'DESC')
                      ->limit(24)
                      ->documents()
             )
         );
+
+        $data = array_reverse($reports);
+        $history = [];
+        foreach ($data as $value) {
+            $history[$value['date']->hours()] = [
+                'date' => $value['date']->toString(),
+                'pressure' => $value['pressure'],
+            ];
+        }
+
+        return array_values($history);
     }
 }

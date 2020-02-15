@@ -49,4 +49,9 @@ final class ReportDate
     {
         return $this->datetime->getTimestamp();
     }
+
+    public function hours(): int
+    {
+        return (int) $this->datetime->format('H');
+    }
 }

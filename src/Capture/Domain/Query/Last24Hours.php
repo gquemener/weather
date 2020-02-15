@@ -5,4 +5,8 @@ namespace App\Capture\Domain\Query;
 
 final class Last24Hours
 {
+    public static function withPayload(array $data): self
+    {
+        return new self();
+    }
 }

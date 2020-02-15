@@ -1,9 +1,9 @@
-list_reports:
-    path: /reports
-    methods: GET
-    controller: App\Controller\ReportController::list
-
-add_report:
-    path: /reports
+dispatch_command:
+    path: /commands
     methods: POST
-    controller: App\Controller\ReportController::add
+    controller: App\Controller\CommandController::dispatch
+
+dispatch_query:
+    path: /queries
+    methods: POST
+    controller: App\Controller\QueryController::dispatch

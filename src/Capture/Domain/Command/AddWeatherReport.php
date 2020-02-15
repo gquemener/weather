@@ -10,4 +10,13 @@ final class AddWeatherReport
 {
     public Pressure $pressure;
     public ReportDate $measuredOn;
+
+    public static function withPayload(array $data): self
+    {
+        $self = new self();
+        $self->pressure = Pressure::fromFloat($data['pressure']);
+        $self->measuredOn = ReportDate::fromTimestamp($data['date']);
+
+        return $self;
+    }
 }

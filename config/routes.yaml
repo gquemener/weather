@@ -7,3 +7,18 @@ dispatch_query:
     path: /queries
     methods: POST
     controller: App\Controller\QueryController::dispatch
+
+grafana_test:
+    path: /grafana/
+    methods: GET
+    controller: App\Controller\GrafanaController::test
+
+grafana_search:
+    path: /grafana/search
+    methods: POST
+    controller: App\Controller\GrafanaController::search
+
+grafana_query:
+    path: /grafana/query
+    methods: POST
+    controller: App\Controller\GrafanaController::query

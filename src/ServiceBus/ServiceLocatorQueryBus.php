@@ -7,6 +7,8 @@ use Psr\Container\ContainerInterface;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
 use App\Capture\Domain\Query\Last24Hours;
 use App\Capture\Domain\Query\Last24HoursFinder;
+use App\Capture\Domain\Query\AllReports;
+use App\Capture\Domain\Query\AllReportsFinder;
 
 final class ServiceLocatorQueryBus implements QueryBus, ServiceSubscriberInterface
 {
@@ -35,6 +37,7 @@ final class ServiceLocatorQueryBus implements QueryBus, ServiceSubscriberInterfa
     {
         return [
             Last24Hours::class => Last24HoursFinder::class,
+            AllReports::class => AllReportsFinder::class,
         ];
     }
 }

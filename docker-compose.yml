@@ -10,6 +10,13 @@ services:
         working_dir: /app
         ports:
             - 8081:8080
+        env_file:
+            - .env
+            - .env.local
+
+    grafana:
+        image: grafana/grafana
         environment:
-            - APP_ENV=dev
-            - PORT=8080
+            - GF_INSTALL_PLUGINS=grafana-simple-json-datasource
+        ports:
+            - 3000:3000

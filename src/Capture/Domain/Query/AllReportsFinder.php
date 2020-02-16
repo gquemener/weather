@@ -16,12 +16,17 @@ final class AllReportsFinder
         $this->firestore = $firestore;
     }
 
-    public function __invoke(): array
+    public function __invoke(AllReports $query): array
     {
         return array_map(
             fn(DocumentSnapshot $snapshot) => $snapshot->data(),
             iterator_to_array(
-                $this->firestore->collection('reports')->orderBy('date', 'ASC')->documents()
+                $this->firestore
+                     ->collection('reports')
+                     ->where('date', '>=', $query->from)
+                     ->where('date', '<=', $query->to)
+                     ->orderBy('date', 'ASC')
+                     ->documents()
             )
         );
     }

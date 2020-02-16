@@ -12,15 +12,7 @@ final class QueryController
 {
     public function dispatch(Request $request, QueryBus $queryBus): Response
     {
-        $data = json_decode($request->getContent(), true);
-        if (JSON_ERROR_NONE !== json_last_error()) {
-            return new JsonResponse(
-                sprintf('{"message":"%s"}', json_last_error_msg()),
-                400,
-                [],
-                true
-            );
-        }
+        $data = $request->request->all();
 
         if (!array_key_exists('name', $data) || !array_key_exists('payload', $data)) {
             return new JsonResponse(

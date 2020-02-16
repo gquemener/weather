@@ -12,24 +12,7 @@ final class CommandController
 {
     public function dispatch(Request $request, CommandBus $commandBus): Response
     {
-        $data = json_decode($request->getContent(), true);
-        if (JSON_ERROR_NONE !== json_last_error()) {
-            return new JsonResponse(
-                sprintf('{"message":"%s"}', json_last_error_msg()),
-                400,
-                [],
-                true
-            );
-        }
-
-        if (!array_key_exists('name', $data) || !array_key_exists('payload', $data)) {
-            return new JsonResponse(
-                '{"message":"Invalid JSON payload"}',
-                400,
-                [],
-                true
-            );
-        }
+        $data = $request->request->all();
 
         $className = sprintf('App\\Capture\\Domain\\Command\\%s', $data["name"]);
 

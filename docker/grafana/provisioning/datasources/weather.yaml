@@ -1,0 +1,18 @@
+datasources:
+- name: Weather
+  type: grafana-simple-json-datasource
+  typeLogoUrl: ~
+  access: proxy
+  url: "https://weather.gildasquemener.me/grafana"
+  password: ~
+  user: ~
+  database: ~
+  basicAuth: false
+  basicAuthUser: ~
+  basicAuthPassword: ~
+  withCredentials: false
+  isDefault: true
+  jsonData: {}
+  secureJsonFields: {}
+  version: 1
+  readOnly: true

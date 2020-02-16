@@ -15,8 +15,13 @@ services:
             - .env.local
 
     grafana:
-        image: grafana/grafana
+        build:
+            context: ./
+            dockerfile: ./docker/grafana/Dockerfile
         environment:
+            - GF_SECURITY_ADMIN_USER=admin
+            - GF_SECURITY_ADMIN_PASSWORD=ChangeMe
             - GF_INSTALL_PLUGINS=grafana-simple-json-datasource
+            - GF_AUTH_ANONYMOUS_ENABLED=true
         ports:
             - 3000:3000

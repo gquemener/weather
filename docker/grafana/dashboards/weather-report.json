@@ -15,7 +15,6 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
   "links": [],
   "panels": [
     {
@@ -27,7 +26,7 @@
       "decimals": 0,
       "description": "",
       "fill": 1,
-      "fillGradient": 0,
+      "fillGradient": 10,
       "gridPos": {
         "h": 23,
         "w": 24,
@@ -54,7 +53,7 @@
         "dataLinks": []
       },
       "percentage": false,
-      "pointradius": 2,
+      "pointradius": 0.5,
       "points": true,
       "renderer": "flot",
       "seriesOverrides": [],
@@ -88,8 +87,9 @@
       },
       "yaxes": [
         {
+          "decimals": 0,
           "format": "pressurehpa",
-          "label": null,
+          "label": "",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -124,5 +124,5 @@
   "timezone": "",
   "title": "Weather Report",
   "uid": "BXKQhvwWk",
-  "version": 3
+  "version": 1
 }

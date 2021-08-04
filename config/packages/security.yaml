@@ -14,5 +14,4 @@ security:
             stateless: true
 
     access_control:
-        - { path: '^/grafana', roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: '^/', roles: IS_AUTHENTICATED_FULLY }

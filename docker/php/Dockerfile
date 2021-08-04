@@ -17,8 +17,6 @@ WORKDIR /app/
 COPY --from=composer /root/vendor /app/vendor
 
 RUN apt-get update && apt-get install -y --no-install-recommends libz-dev && rm -rf /var/lib/apt/lists/*
-RUN pecl install grpc
-RUN pecl install protobuf
 RUN docker-php-ext-install -j$(nproc) pcntl opcache
 RUN if [ "$APP_ENV" = "dev" ] ; then pecl install xdebug; fi
 COPY docker/php/config/*.ini /usr/local/etc/php/conf.d/

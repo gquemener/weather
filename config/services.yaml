@@ -28,8 +28,9 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    Google\Cloud\Firestore\FirestoreClient:
+    App\Capture\Infrastructure\ReportRepository\InfluxDB:
         arguments:
-            -
-                projectId: '%env(string:APP_FIRESTORE_PROJECT_ID)%'
-                keyFilePath: '%kernel.project_dir%/config/google/keyfile.json'
+            - '%env(string:APP_INFLUXDB_TOKEN)%'
+            - '%env(string:APP_INFLUXDB_ORG)%'
+            - '%env(string:APP_INFLUXDB_BUCKET)%'
+            - '%env(string:APP_INFLUXDB_URL)%'
